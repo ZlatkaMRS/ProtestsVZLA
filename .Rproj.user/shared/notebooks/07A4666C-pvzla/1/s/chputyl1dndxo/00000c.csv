@@ -1,0 +1,2 @@
+"0","protest <- ts(monthlyprotest$Protests, frequency = 12)"
+"0","plot.ts(ts(monthlyprotest$Protests))"

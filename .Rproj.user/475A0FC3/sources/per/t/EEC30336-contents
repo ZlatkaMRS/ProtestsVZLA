@@ -1,0 +1,40 @@
+---
+title: "ProtestVZLA"
+author: "ZMRS"
+date: "4/10/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Library
+```{r}
+library(readr)
+library(ggplot2)
+
+```
+
+
+## Add data
+```{r}
+monthlyprotest <- read_csv("data/monthlyprotest.csv", 
+    col_types = cols(Date = col_date(format = "%m/%d/%Y")))
+View(monthlyprotest)
+```
+## Time series
+
+```{r}
+protest <- ts(monthlyprotest$Protests, frequency = 12)
+plot.ts(ts(monthlyprotest$Protests))
+```
+
+## Plot time series
+```{r}
+qplot(x=Date,y=Protests,
+      data=monthlyprotest,
+      main="Monthly Protests in Venezuela (2011 - 2021)")
+```
+
+
