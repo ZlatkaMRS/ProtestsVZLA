@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(readr)
 library(ggplot2)
-
+library(tseries)
 ```
 
 
@@ -24,17 +24,90 @@ monthlyprotest <- read_csv("data/monthlyprotest.csv",
 View(monthlyprotest)
 ```
 ## Time series
-
+##View data
 ```{r}
-protest <- ts(monthlyprotest$Protests, frequency = 12)
-plot.ts(ts(monthlyprotest$Protests))
+Protests <- ts(monthlyprotest$Protests, start = 2011, frequency = 12)
+plot.ts(Protests)
+
+##Yearly mean plot
+plot.ts(aggregate(Protests, FUN= mean), ylab = "Protests")
 ```
 
-## Plot time series
+## Plot by month, year replicates
+
 ```{r}
-qplot(x=Date,y=Protests,
-      data=monthlyprotest,
-      main="Monthly Protests in Venezuela (2011 - 2021)")
+
+boxplot(monthlyprotest$Protests~ordered(monthlyprotest$Month, levels = c("January","February","March","April","May","June","July","August","September","October","November","December")),
+        xlab = "Months",
+        ylab = "Protests in Venezuela")
+
 ```
 
+## Stationary data test
+
+```{r}
+adf.test(diff(log(Protests)), alternative="stationary",k=0)
+```
+
+## ACF and PACF plot
+```{r}
+acf(log(Protests),main="",col="red")
+acf(diff(log(Protests)),main="",col="red")
+pacf(diff(log(Protests)),main="",col="red")
+```
+
+## Decomposition of time series
+
+```{r}
+#With log or without log?
+ProtDecomp <- decompose(Protests)
+plot(ProtDecomp)
+```
+
+## Selecting the model
+```{r}
+# AR order
+model10 <- arima(Protests,order=c(1,0,0))
+model20 <- arima(Protests,order=c(2,0,0))
+model30 <- arima(Protests,order=c(3,0,0))
+model40 <- arima(Protests,order=c(4,0,0))
+model50 <- arima(Protests,order=c(5,0,0))
+model60 <- arima(Protests,order=c(6,0,0))
+AIC(model10,model20,model30,model40,model50,model60)
+#degree of differencing
+model01 <- arima(Protests,order=c(0,0,1))
+model02 <- arima(Protests,order=c(0,0,2))
+model03 <- arima(Protests,order=c(0,0,3))
+model04 <- arima(Protests,order=c(0,0,4))
+model05 <- arima(Protests,order=c(0,0,5))
+model06 <- arima(Protests,order=c(0,0,6))
+AIC(model01,model02,model03,model04,model05,model06)
+
+##both
+model60 <- arima(Protests,order=c(6,0,0))
+model61 <- arima(Protests,order=c(6,0,1))
+model62 <- arima(Protests,order=c(6,0,2))
+model63 <- arima(Protests,order=c(6,0,3))
+AIC(model60,model61,model62,model63)
+#MA order
+model600 <- arima(Protests,order=c(6,0,0))
+model601 <- arima(Protests,order=c(1,1,2))
+model602 <- arima(Protests,order=c(6,2,0))
+model603 <- arima(Protests,order=c(6,3,0))
+AIC(model600,model601,model602,model603)
+```
+
+
+
+## ARIMA model
+```{r}
+fit <- arima(log(Protests), c(1,1,2), seasonal = list(order = c(1,1,2), period = 12))
+pred <- predict(fit, n.ahead = 10*12)
+ts.plot(Protests,2.718^pred$pred, log="y", lty = c(1,3))
+```
+
+## Automatic ARIMA model
+```{r}
+auto.arima(Protests, trace=TRUE) 
+```
 

@@ -1,0 +1,8 @@
+"0","#degree of differencing"
+"0","model01 <- arima(Protests,order=c(0,0,1))"
+"0","model02 <- arima(Protests,order=c(0,0,2))"
+"0","model03 <- arima(Protests,order=c(0,0,3))"
+"0","model04 <- arima(Protests,order=c(0,0,4))"
+"0","model05 <- arima(Protests,order=c(0,0,5))"
+"0","model06 <- arima(Protests,order=c(0,0,6))"
+"0","AIC(model01,model02,model03,model04,model05,model06)"

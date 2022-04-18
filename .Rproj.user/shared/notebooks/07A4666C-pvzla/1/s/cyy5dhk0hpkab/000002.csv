@@ -1,0 +1,4 @@
+"0","auto.arima(Protests, trace=TRUE) "
+"2","Error in auto.arima(Protests, trace = TRUE) : 
+  could not find function ""auto.arima""
+"

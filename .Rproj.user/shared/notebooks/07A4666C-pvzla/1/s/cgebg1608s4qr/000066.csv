@@ -1,0 +1,7 @@
+"0",""
+"0","##both"
+"0","model60 <- arima(Protests,order=c(6,0,0))"
+"0","model61 <- arima(Protests,order=c(6,0,1))"
+"0","model62 <- arima(Protests,order=c(6,0,2))"
+"0","model63 <- arima(Protests,order=c(6,0,3))"
+"0","AIC(model60,model61,model62,model63)"

@@ -1,0 +1,11 @@
+"0","#MA order"
+"0","model600 <- arima(Protests,order=c(6,0,0))"
+"0","model601 <- arima(Protests,order=c(1,1,2))"
+"0","model602 <- arima(Protests,order=c(6,2,0))"
+"0","model603 <- arima(Protests,order=c(6,3,0))"
+"0","AIC(model600,model601,model602,model603)"
+"2","Warning in AIC.default(model600, model601, model602, model603) :"
+"2","
+ "
+"2"," models are not all fitted to the same number of observations
+"

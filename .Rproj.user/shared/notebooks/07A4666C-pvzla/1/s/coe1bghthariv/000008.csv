@@ -1,0 +1,3 @@
+"0","#With log or without log?"
+"0","ProtDecomp <- decompose(log(Protests))"
+"0","plot(ProtDecomp)"

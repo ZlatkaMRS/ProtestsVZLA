@@ -1,0 +1,8 @@
+"0","# AR order"
+"0","model10 <- arima(Protests,order=c(1,0,0))"
+"0","model20 <- arima(Protests,order=c(2,0,0))"
+"0","model30 <- arima(Protests,order=c(3,0,0))"
+"0","model40 <- arima(Protests,order=c(4,0,0))"
+"0","model50 <- arima(Protests,order=c(5,0,0))"
+"0","model60 <- arima(Protests,order=c(6,0,0))"
+"0","AIC(model10,model20,model30,model40,model50,model60)"
