@@ -84,17 +84,17 @@ model06 <- arima(Protests,order=c(0,0,6))
 AIC(model01,model02,model03,model04,model05,model06)
 
 ##both
-model60 <- arima(Protests,order=c(6,0,0))
-model61 <- arima(Protests,order=c(6,0,1))
-model62 <- arima(Protests,order=c(6,0,2))
-model63 <- arima(Protests,order=c(6,0,3))
-AIC(model60,model61,model62,model63)
+model10 <- arima(Protests,order=c(1,0,0))
+model11 <- arima(Protests,order=c(1,0,1))
+model12 <- arima(Protests,order=c(1,0,2))
+model13 <- arima(Protests,order=c(1,0,3))
+AIC(model10,model11,model12,model13)
 #MA order
-model600 <- arima(Protests,order=c(6,0,0))
-model601 <- arima(Protests,order=c(1,1,2))
-model602 <- arima(Protests,order=c(6,2,0))
-model603 <- arima(Protests,order=c(6,3,0))
-AIC(model600,model601,model602,model603)
+model100 <- arima(Protests,order=c(1,0,2))
+model101 <- arima(Protests,order=c(1,1,2))
+model102 <- arima(Protests,order=c(1,2,2))
+model103 <- arima(Protests,order=c(1,3,2))
+AIC(model100,model101,model102,model103)
 ```
 
 
@@ -103,11 +103,7 @@ AIC(model600,model601,model602,model603)
 ```{r}
 fit <- arima(log(Protests), c(1,1,2), seasonal = list(order = c(1,1,2), period = 12))
 pred <- predict(fit, n.ahead = 10*12)
-ts.plot(Protests,2.718^pred$pred, log="y", lty = c(1,3))
+ts.plot(Protests,2.718^pred$pred, log="y", lty = c(1,3), ylab = "Protests in Venezuela")
 ```
 
-## Automatic ARIMA model
-```{r}
-auto.arima(Protests, trace=TRUE) 
-```
 
