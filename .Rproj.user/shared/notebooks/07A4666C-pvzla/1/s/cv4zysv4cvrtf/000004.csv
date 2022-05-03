@@ -1,0 +1,3 @@
+"0",""
+"0","##Yearly mean plot"
+"0","plot.ts(aggregate(Protests, FUN= mean), ylab = ""Protests"")"

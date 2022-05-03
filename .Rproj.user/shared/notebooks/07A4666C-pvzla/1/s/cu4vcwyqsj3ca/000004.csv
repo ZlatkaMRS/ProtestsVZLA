@@ -1,0 +1,5 @@
+"0",""
+"0","boxplot(monthlyprotest$Protests~ordered(monthlyprotest$Month, levels = c(""January"",""February"",""March"",""April"",""May"",""June"",""July"",""August"",""September"",""October"",""November"",""December"")),"
+"0","        xlab = ""Months"","
+"0","        ylab = ""Protests in Venezuela"")"
+"0",""
